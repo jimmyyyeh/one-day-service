@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： one_day_mysql
--- 產生時間： 2022 年 02 月 11 日 09:54
+-- 產生時間： 2022 年 02 月 12 日 05:30
 -- 伺服器版本： 5.6.51
 -- PHP 版本： 7.4.20
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- 資料庫: `one-day`
 --
+CREATE DATABASE IF NOT EXISTS `one-day` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `one-day`;
 
 -- --------------------------------------------------------
 
@@ -27,6 +29,7 @@ SET time_zone = "+00:00";
 -- 資料表結構 `banner`
 --
 
+DROP TABLE IF EXISTS `banner`;
 CREATE TABLE `banner` (
   `id` int(11) NOT NULL,
   `title` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '標題',
@@ -35,6 +38,11 @@ CREATE TABLE `banner` (
   `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 資料表新增資料前，先清除舊資料 `banner`
+--
+
+TRUNCATE TABLE `banner`;
 --
 -- 傾印資料表的資料 `banner`
 --
@@ -49,6 +57,7 @@ INSERT INTO `banner` (`id`, `title`, `url`, `update_datetime`, `create_datetime`
 -- 資料表結構 `report`
 --
 
+DROP TABLE IF EXISTS `report`;
 CREATE TABLE `report` (
   `id` int(11) NOT NULL,
   `token_id` int(11) DEFAULT NULL COMMENT 'token id',
@@ -59,6 +68,11 @@ CREATE TABLE `report` (
   `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 資料表新增資料前，先清除舊資料 `report`
+--
+
+TRUNCATE TABLE `report`;
 --
 -- 傾印資料表的資料 `report`
 --
@@ -73,6 +87,7 @@ INSERT INTO `report` (`id`, `token_id`, `title`, `content`, `has_image`, `update
 -- 資料表結構 `script`
 --
 
+DROP TABLE IF EXISTS `script`;
 CREATE TABLE `script` (
   `id` int(11) NOT NULL,
   `title` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '標題',
@@ -82,6 +97,11 @@ CREATE TABLE `script` (
   `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 資料表新增資料前，先清除舊資料 `script`
+--
+
+TRUNCATE TABLE `script`;
 --
 -- 傾印資料表的資料 `script`
 --
@@ -99,6 +119,7 @@ INSERT INTO `script` (`id`, `title`, `description`, `content`, `update_datetime`
 -- 資料表結構 `token`
 --
 
+DROP TABLE IF EXISTS `token`;
 CREATE TABLE `token` (
   `id` int(11) NOT NULL,
   `token` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -107,6 +128,11 @@ CREATE TABLE `token` (
   `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 資料表新增資料前，先清除舊資料 `token`
+--
+
+TRUNCATE TABLE `token`;
 --
 -- 傾印資料表的資料 `token`
 --
@@ -219,6 +245,7 @@ INSERT INTO `token` (`id`, `token`, `limit`, `update_datetime`, `create_datetime
 -- 資料表結構 `token_binding`
 --
 
+DROP TABLE IF EXISTS `token_binding`;
 CREATE TABLE `token_binding` (
   `id` int(11) NOT NULL,
   `token_id` int(11) NOT NULL COMMENT 'token id',
@@ -228,6 +255,11 @@ CREATE TABLE `token_binding` (
   `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 資料表新增資料前，先清除舊資料 `token_binding`
+--
+
+TRUNCATE TABLE `token_binding`;
 --
 -- 傾印資料表的資料 `token_binding`
 --
@@ -241,6 +273,7 @@ INSERT INTO `token_binding` (`id`, `token_id`, `device_id`, `email`, `update_dat
 -- 資料表結構 `user_behavior`
 --
 
+DROP TABLE IF EXISTS `user_behavior`;
 CREATE TABLE `user_behavior` (
   `id` int(11) NOT NULL,
   `token_id` int(11) NOT NULL COMMENT 'token id',
@@ -250,6 +283,11 @@ CREATE TABLE `user_behavior` (
   `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 資料表新增資料前，先清除舊資料 `user_behavior`
+--
+
+TRUNCATE TABLE `user_behavior`;
 --
 -- 已傾印資料表的索引
 --
