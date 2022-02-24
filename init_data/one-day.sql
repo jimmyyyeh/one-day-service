@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： one_day_mysql
--- 產生時間： 2022 年 02 月 13 日 09:03
+-- 產生時間： 2022 年 02 月 24 日 04:02
 -- 伺服器版本： 5.6.51
 -- PHP 版本： 7.4.20
 
@@ -49,6 +49,34 @@ INSERT INTO `banner` (`id`, `title`, `url`, `update_datetime`, `create_datetime`
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `chat`
+--
+
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE `chat` (
+  `id` int(11) NOT NULL,
+  `token` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '訊息內容',
+  `is_replied` int(11) NOT NULL COMMENT '是否回覆',
+  `role` int(11) NOT NULL COMMENT '角色',
+  `update_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新時間',
+  `create_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '建立時間'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 傾印資料表的資料 `chat`
+--
+
+INSERT INTO `chat` (`id`, `token`, `message`, `is_replied`, `role`, `update_datetime`, `create_datetime`) VALUES
+(1, 'abc12345', 'Hello', 1, 2, '2022-02-24 11:54:13', '2022-02-24 11:53:34'),
+(2, 'abc12345', 'This is Jimmy, may I help you?', 1, 1, '2022-02-24 11:54:13', '2022-02-24 11:54:13'),
+(3, 'o3rqhmcvih', '我想要買One Day 請問該如何購買', 1, 2, '2022-02-24 12:01:46', '2022-02-24 12:01:41'),
+(4, 'o3rqhmcvih', '您好', 1, 1, '2022-02-24 12:01:46', '2022-02-24 12:01:46'),
+(5, 'o3rqhmcvih', '請您直接到各大魔術商店或是點選頁面上方我要購買連結即可', 1, 1, '2022-02-24 12:01:59', '2022-02-24 12:01:59');
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `report`
 --
 
@@ -69,7 +97,7 @@ CREATE TABLE `report` (
 --
 
 INSERT INTO `report` (`id`, `token_id`, `title`, `content`, `has_image`, `is_solved`, `update_datetime`, `create_datetime`) VALUES
-(1, 1, '這是問題', '這是真的問題', 0, 1, '2022-02-13 16:53:39', '2022-02-11 16:12:42'),
+(1, 1, '這是問題', '這是真的問題', 0, 1, '2022-02-18 12:55:52', '2022-02-11 16:12:42'),
 (2, NULL, '這個問題很嚴重', '請你們一定要確認', 1, 0, '2022-02-13 16:53:46', '2022-02-11 16:13:15');
 
 -- --------------------------------------------------------
@@ -120,7 +148,7 @@ CREATE TABLE `token` (
 --
 
 INSERT INTO `token` (`id`, `token`, `limit`, `update_datetime`, `create_datetime`) VALUES
-(1, 'abc12345', 2, '2022-02-10 15:35:55', '2022-02-10 15:35:55'),
+(1, 'abc12345', 200, '2022-02-18 12:32:57', '2022-02-10 15:35:55'),
 (2, 'Tuo7MZWn', 2, '2022-02-10 15:35:55', '2022-02-10 15:35:55'),
 (3, 'M4ZvXdmt', 2, '2022-02-10 15:35:55', '2022-02-10 15:35:55'),
 (4, 'ffiS1kaT', 2, '2022-02-10 15:35:55', '2022-02-10 15:35:55'),
@@ -271,6 +299,12 @@ ALTER TABLE `banner`
   ADD PRIMARY KEY (`id`);
 
 --
+-- 資料表索引 `chat`
+--
+ALTER TABLE `chat`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- 資料表索引 `report`
 --
 ALTER TABLE `report`
@@ -313,6 +347,12 @@ ALTER TABLE `user_behavior`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 使用資料表自動遞增(AUTO_INCREMENT) `chat`
+--
+ALTER TABLE `chat`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `report`
